@@ -1,0 +1,142 @@
+﻿#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+template <typename T>
+class Node
+{
+public:
+    int vertex;
+    Node<T> *next;
+
+    Node(int v)
+    {
+        vertex = v;
+        next = nullptr;
+    }
+};
+
+template <typename T>
+class Graph
+{
+    int V;
+    int start;
+    Node<T> **adjList;
+    T *vertices; // FIXED: int → T
+
+public:
+    Graph(int V)
+    {
+        this->V = V;
+        vertices = new T[V];
+        adjList = new Node<T> *[V];
+
+        for (int i = 0; i < V; i++)
+            adjList[i] = nullptr;
+
+        start = -1;
+    }
+
+    void addVertex(T v)
+    {
+        start++;
+        if (start < V)
+            vertices[start] = v;
+        else
+            cout << "Vertex limit exceeded" << endl;
+    }
+
+    void addEdge(int v1, int v2)
+    {
+        Node<T> *newNode1 = new Node<T>(v2);
+        newNode1->next = adjList[v1];
+        adjList[v1] = newNode1;
+
+        Node<T> *newNode2 = new Node<T>(v1);
+        newNode2->next = adjList[v2];
+        adjList[v2] = newNode2;
+    }
+
+    void display()
+    {
+        cout << "Vertices:" << endl;
+        for (int i = 0; i < V; i++)
+            cout << vertices[i] << " ";
+        cout << endl;
+
+        cout << "Adjacency List:" << endl;
+        for (int i = 0; i < V; i++)
+        {
+            cout << vertices[i] << ": ";
+            Node<T> *temp = adjList[i];
+            while (temp != nullptr)
+            {
+                cout << vertices[temp->vertex] << " ";
+                temp = temp->next;
+            }
+            cout << endl;
+        }
+    }
+
+    void bfsVisit(int s, vector<bool> &visited, queue<int> &q)
+    {
+        visited[s] = true;
+        q.push(s);
+
+        while (!q.empty())
+        {
+            int curr = q.front();
+            q.pop();
+            cout << vertices[curr] << " ";
+
+            Node<T> *temp = adjList[curr];
+            while (temp != nullptr)
+            {
+                int adjVertex = temp->vertex;
+
+                if (!visited[adjVertex])
+                {
+                    visited[adjVertex] = true;
+                    q.push(adjVertex);
+                }
+                temp = temp->next;
+            }
+        }
+    }
+
+    void bfs()
+    {
+        cout << "\nBFS Traversal: ";
+        vector<bool> visited(V, false);
+        queue<int> q;
+
+        for (int i = 0; i < V; i++)
+            if (!visited[i])
+                bfsVisit(i, visited, q);
+    }
+};
+
+int main()
+{
+    Graph<string> g(5);
+
+    g.addVertex("A");
+    g.addVertex("B");
+    g.addVertex("C");
+    g.addVertex("D");
+    g.addVertex("E");
+
+    g.addEdge(0, 1);
+    g.addEdge(0, 4);
+    g.addEdge(1, 2);
+    g.addEdge(1, 3);
+    g.addEdge(1, 4);
+    g.addEdge(2, 3);
+    g.addEdge(3, 4);
+
+    g.display();
+    g.bfs();
+
+    return 0;
+}
