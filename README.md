@@ -6,8 +6,8 @@ This repository contains my practice code:
   - Programming Fundamentals
   - Object Oriented Programming
   - Data Structures & Algorithms
-- Python
-- JavaScript
+- Python(mini & small Projects)
+- JavaScript(mini & small projects)
 
 This repository is for learning and practice.
 Complete projects will be in separate repositories.
