@@ -11,9 +11,3 @@ This repository contains my practice code:
 
 This repository is for learning and practice.
 Complete projects will be in separate repositories.
-# C++
-# Programming fundamentals
-# Object Oriented Programming
-# Data Structure
-# JAVASCRIPT
-
