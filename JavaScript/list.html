@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li>1 <button>remove</button></li>
+        <li>2 <button>remove</button></li>
+        <li>3 <button>remove</button></li>
+        <li>4 <button>remove</button></li>
+    </ul>
+    <script>
+        //here we only create event on parent 
+        //but child will be accessible using e.target that is called event delegation
+        //and for recogize tag that is triggered will be used tagname in upper case will lower case this is not working
+        //Because browser always return html tagname in upper case
+        document.querySelector("#list").addEventListener("click",(e)=>{
+            if(e.target.tagName=="LI")
+        {
+            console.log(e.target);
+            console.log(e.target.tagName);
+        }
+        else if(e.target.tagName=="BUTTON")
+        {
+            //inside each li button exist if button clicked then its parent that is its li will be remove
+            e.target.parentElement.remove();
+        }
+        })
+    </script>
+</body>
+</html>

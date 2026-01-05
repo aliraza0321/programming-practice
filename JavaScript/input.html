@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <input type="text" name="name" id="username" placeholder="Enter name">
+        <button>Submit</button>
+        <h1></h1>
+
+    </form>
+    <script>
+        let form = document.querySelector("#myForm");
+        let show = document.querySelector("h1");
+        let input = document.querySelector("#username");
+
+        form.addEventListener("submit", (e) => {
+            //first check that user enter correct name or not if empty name then 
+            //this is not allowed
+            e.preventDefault();//this line will come first other wise page will relaod 
+            if (input.value.trim() === "") //check that input is empty or not 
+            {
+                show.innerText="Empty not allowed";
+                return;
+            }
+            show.innerText = input.value;
+        })
+    </script>
+</body>
+
+</html>

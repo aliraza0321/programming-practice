@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="email" placeholder="Email">
+    <button id="submit">Submit</button>
+    <p id="msg"></p>
+
+    <script>
+        let input = document.querySelector("#email");
+        let btn = document.querySelector("#submit");
+        let result = document.querySelector("#msg");
+        btn.addEventListener("click", () => {
+            if (input.value === "") {
+                result.innerText = "Email is required!";
+                result.style.color = "red";
+            }
+            else {
+                msg.innerText = "Submitted!";
+                msg.style.color = "green";
+            }
+        })
+    </script>
+</body>
+
+</html>

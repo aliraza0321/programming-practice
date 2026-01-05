@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" id="name">
+        <button>Add</button>
+        Total Items
+        <button type="button" id="count">0</button>
+    </form>
+
+    <ul id="list"></ul>
+    <script>
+        let form = document.querySelector("#form");
+        let input = document.querySelector("#name");
+        let list = document.querySelector("#list");
+        let count = document.querySelector("#count");
+         
+
+        let names = JSON.parse(localStorage.getItem("names")) || [];
+
+        //take data from storage if data is not there then take empty array for next data
+        let delbtn = document.querySelector("#delete");
+
+        //for delete we create event on list that is parenat of all li
+        list.addEventListener("click", (e) => {
+            if (e.target.innerText === "X") 
+            {//event delegation occurs here 
+                //this will find index of target that will delete 
+                const index = e.target.dataset.index;
+
+                names.splice(index, 1);//this will delete 1 element from target index
+                //store new names array that is updated now 
+
+                localStorage.setItem("names", JSON.stringify(names));
+                
+                renderNames();//after modify array render again this array 
+            }
+            else if(e.target.innerText==="edit")//user will click on button if this button is edit then we need to update it 
+            {//as we already assigne index for each li button therefore we get index on which we need to modify
+                const index=e.target.dataset.index;
+                const newValue=prompt("Enter new valye");
+                if(newValue.trim()==="")
+            {
+                alert("Empty is not alllowed");
+                return;
+            }
+                names[index]=newValue;
+                localStorage.setItem("names",JSON.stringify(names))//after modify update data adn render it 
+                renderNames();
+            
+            }
+        });
+
+
+
+        function renderNames() {
+            list.innerHTML = "";//initally list empty otherwise user less data will here that stored before
+            count.innerText=names.length;//count will be total length of names 
+            names.forEach((name,index) => {
+                
+                const li = document.createElement("li");
+                //li has two buttons one for edit and one for delete and buttons has data-index attributes that will work as a index of each li element 
+                li.innerHTML = `${name} <button type="button" data-index=${index} >X</button>
+                                        <button type="button" data-index=${index}>edit</button>`;
+                list.appendChild(li);
+                //create li for each name and append in list
+            });
+        }
+        renderNames();//after loading page first render nameas from local storage on screen in list 
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (input.value.trim() === "") 
+            {
+                alert("Empty string not allowed");
+                return;
+            }
+            let data = input.value;
+            if (!(names.includes(data)))//this will stop dublicate task or data
+            {
+                names.push(data);
+            }
+
+            // names=sort(names);//this will sort array in increaing order
+            //now new data is pushed in end of array and now we need to save it on storage
+            localStorage.setItem("names", JSON.stringify(names));
+            renderNames();
+            input.value = "";
+            //         //using this method array will convert into string and then store on brower local storage
+        })
+        // First time:
+        // names = []
+        // user enters "Ali"
+        // push → ["Ali"]
+        // save → '["Ali"]'
+        // render → Ali show
+        // Second time:
+        // user enters "Ahmed"
+        // push → ["Ali","Ahmed"]
+        // save → '["Ali","Ahmed"]'
+        // render → Ali, Ahmed
+        // Reload:
+        // getItem → '["Ali","Ahmed"]'
+        // parse → ["Ali","Ahmed"]
+        // render → list back ✅
+    </script>
+</body>
+
+</html>

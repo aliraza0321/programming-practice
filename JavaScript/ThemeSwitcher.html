@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body
+    {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        box-sizing: border-box;
+        align-items: center;
+
+    }
+    button{
+        padding: auto;
+        margin: auto;
+        font-size: xx-large;
+        border-radius: 10px;
+        background-color: #d6c7c7;
+
+    }
+    button:hover{
+        transform: scale(1.1);
+        transition: all 0.4s ease-in-out;
+    }
+    button:active{
+        transform: scale(1.34);
+         transition: all 0.4s ease-in-out;
+    }
+   
+</style>
+
+<body>
+    
+    <button class="btn">Red</button>
+    <button class="btn">Green</button>
+    <button class="btn">Blue</button>
+    <button class="btn">Black</button>
+    <button class="btn">White</button>
+
+
+</body>
+<script>
+    let btns=document.querySelectorAll(".btn");
+    btns.forEach((btn)=>{
+        btn.addEventListener("click",()=>{
+        let get=btn.innerText;
+        document.body.style.backgroundColor=get.toUpperCase();
+        });
+    });
+</script>
+</html>

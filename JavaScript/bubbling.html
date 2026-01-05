@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="parent">
+        parent <br><br>
+        <button id="child">Click</button>
+    </div>
+    <h1></h1>
+    <script>
+        let parent = document.querySelector("#parent");
+        let child = document.querySelector("#child");
+        parent.addEventListener("click", () => {
+            console.log("Parent clicked");
+        });
+        document.querySelector("body").addEventListener("click",()=>{
+            console.log("body ");
+        })
+        //if we click on child then after its event completaion its parent then body then document event triggered automatically
+        //this is event bubbling
+        child.addEventListener("click", () => {
+            console.log("Child clicked");
+        });
+    //    child.addEventListener("click", (e) => {
+    //         console.log("Child clicked");
+    //         e.stopPropagation();
+    //     });
+
+        //if we want to stop event bubbling we use 
+        //stoppropagation()  method this will stop bublbing only clicked event occur and triggered 
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" id="name" placeholder="Enter user name">
+        <button>Save</button>
+    </form>
+
+    <p id="output"></p>
+    <script>
+// FULL DRY RUN
+
+// Page load
+
+// LocalStorage check
+
+// Value mili → screen pe show
+
+// User submit
+
+// Save + update UI
+
+// Reload → data still there ✅
+
+
+        const form = document.querySelector("#form");
+        const input = document.querySelector("#name");
+        const output = document.querySelector("#output");
+          
+        // first restore data that is stored on storagea 
+        const savedName = localStorage.getItem("username");
+        if (savedName)
+         {
+            output.innerText += savedName;//concatenate with old data 
+        }
+
+        // Save on submit
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            if (input.value.trim() === "") 
+                return;
+            //save data on local storeage and also update on output 
+            localStorage.setItem("username", input.value);
+            output.innerText += input.value;
+            input.value = "";
+        });
+
+    </script>
+</body>
+
+</html>

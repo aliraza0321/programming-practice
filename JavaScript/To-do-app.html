@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="input" id="input" placeholder="Enter data">
+    <button id="add">Add</button>
+    <h1>To-Do-List-App</h1>
+    <ul id="list"></ul>
+    <script>
+        let input=document.querySelector("#input");
+        let add=document.querySelector("#add");
+        let list=document.querySelector("#list");
+        add.addEventListener("click",()=>{
+            let item=document.createElement("li");
+            item.innerText=input.value+" ";
+            list.append(item);
+            input.value="";
+            let btn=document.createElement("button");
+            btn.innerText="Delete";
+            item.append(btn);
+            //by clickin on it parent of btn that is list can also be triggerd due to bubbling 
+            //we will stop bubbling hereer 
+             btn.addEventListener("click",(e)=>{
+               e.stopPropagation();//now bubling will not occur we stoped it here
+                item.remove();
+             });
+            
+        });
+        
+    </script>
+</body>
+</html>
