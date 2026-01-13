@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="random">Random Color</button>
+    <input type="text" name="color" id="color" placeholder="Enter color">
+    <button id="change">Change</button>
+    <h1></h1>
+
+
+    <script>
+        let colors=["red","green","blue","orange","white","black","purple"];
+        document.querySelector("#random").addEventListener("click",()=>{
+            //this will get random index because Math.random () return any number between 0 and 1 
+            //and we multiply it with total length of array and for convert in integar math.floor funcion is used 
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            document.body.style.backgroundColor=colors[randomIndex];
+            if(colors[randomIndex]==="black")
+        {
+            document.body.style.color="white";
+        }
+        else
+        {
+           document.body.style.color="black";
+        }
+            document.querySelector("h1").innerText=colors[randomIndex]+" background color";
+        });
+        document.querySelector("#change").addEventListener("click",()=>{
+           let data=document.querySelector("#color").value;
+           if(data.trim()==="")
+           {
+             document.querySelector("h1").innerText="Empty color is not allowed";
+             return;
+           }
+            
+            document.body.style.backgroundColor=data;
+            if(data==="black")
+        {
+            document.body.style.color="white";
+        }
+        else
+        {
+           document.body.style.color="black";
+        }
+            document.querySelector("h1").innerText=data+" background color";
+            document.querySelector("#color").value="";
+         
+        });
+    </script>
+</body>
+</html>
