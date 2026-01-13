@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //first find active users and then get their names without chaining
+        const users = [
+            {id:10, name: "Ali", active: true },
+            {id:11, name: "Usman", active: false },
+            {id:12, name: "Hamza", active: true }
+        ];
+       let someMethod=[];
+       //return true or false in any one in array meed condition
+       someMethod=users.some((user)=>{
+        if(user.id===12)
+       {
+        return user;
+       }
+       });
+       console.log(someMethod);
+//check that every object or array meets condition if yes return true otherwise false
+       someMethod=users.every((user)=>{
+        if(user.id===12)
+       {
+        return user;
+       }
+       });
+       console.log(someMethod);
+//this will return first object that meets our condition
+       someMethod=users.find((user)=>{
+        if(user.id===12)
+       {
+        return user;
+       }
+       });
+       console.log(someMethod);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const users = [
+            { name: "Ali", age: 21, active: true },
+            { name: "Usman", age: 19, active: false }
+        ];
+        let newUsers=[];
+        //first map runs on users array and after convert to uppercase names this will return whole object to new array 
+        newUsers=users.map((user)=>{
+            user.name=user.name.toUpperCase();
+            return user;
+        })
+        newUsers.forEach((user)=>{
+            console.log(user);
+        })
+
+    </script>
+</body>
+
+</html>

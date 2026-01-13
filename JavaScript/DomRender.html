@@ -1,0 +1,97 @@
+﻿ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User List App</title>
+</head>
+
+<body>
+
+  <h2>Welcome to User List</h2>
+
+  <input type="text" id="input" placeholder="Enter name" />
+  <input type="number" id="age" placeholder="Enter age" />
+  <button id="add">Add</button>
+
+  <ul id="list"></ul>
+
+  <script>
+    // DATA
+    const users = [
+      { name: "Ali", age: 20 },
+      { name: "Ahmed", age: 22 },
+      { name: "Sara", age: 19 }
+    ];
+
+    const nameInput = document.querySelector("#input");
+    const ageInput = document.querySelector("#age");
+    const list = document.querySelector("#list");
+
+    // RENDER FUNCTION
+    let renderUser=()=> 
+    {
+      list.innerHTML = "";
+
+      users.forEach((user, index) => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+          ${user.name} (${user.age})
+          <button data-index="${index}">Edit</button>
+          <button data-index="${index}">Delete</button>
+        `;
+
+        list.appendChild(li);
+      });
+    }
+
+    renderUser();
+
+    // ADD USER
+    document.querySelector("#add").addEventListener("click", () => {
+      const name = nameInput.value.trim();
+      const age = ageInput.value.trim();
+
+      if (!name || !age) {
+        alert("Please enter both name and age");
+        return;
+      }
+
+      users.push({
+        name: name,
+        age: Number(age)
+      });
+
+      nameInput.value = "";
+      ageInput.value = "";
+
+      renderUser();
+    });
+
+    // EDIT & DELETE (EVENT DELEGATION)
+    list.addEventListener("click", (e) => {
+
+      const index = e.target.dataset.index;
+
+      if (e.target.innerText === "Delete") {
+        users.splice(index, 1);
+        renderUser();
+      }
+
+      if (e.target.innerText === "Edit") {
+        const newName = prompt("Enter new name:", users[index].name);
+        const newAge = prompt("Enter new age:", users[index].age);
+
+        if (newName && newAge) {
+          users[index].name = newName;
+          users[index].age = Number(newAge);
+          renderUser();
+        }
+      }
+
+    });
+  </script>
+
+</body>
+</html>

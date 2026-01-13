@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="data" id="input">
+    <button>Add</button>
+    <h1></h1>
+    <script>
+        let login=(data)=>{
+            return new Promise((resolve,reject)=>{
+                if(data=="admin")
+            {
+                resolve("Correct username  entered");
+            }
+            else
+            {
+                reject("You entered wrong username");
+            }
+            })
+        }
+        document.querySelector("button").addEventListener("click",()=>{
+            let data=document.querySelector("#input").value;
+            document.querySelector("#input").value="";
+            login(data).then(msg=>{
+                document.querySelector("h1").innerText=msg;
+            }).catch(err=>{
+                document.querySelector("h1").innerText=err;
+            })
+        })
+    </script>
+</body>
+</html>

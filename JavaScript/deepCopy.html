@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 10;
+        let b = a;
+
+        b = 20;
+        //this is deep copy original will be same 
+        console.log(a); // 10
+
+        let user1 = { name: "Ali" };
+        let user2 = user1;
+
+        user2.name = "Ahmed";
+
+        console.log(user1.name); // Ahmed
+        //this is shallow both users points same memory and if one change then other will change automatically
+
+
+        const user = {
+            name: "Ali",
+            address: {
+                city: "Lahore"
+            }
+        };
+
+        const copy = { ...user };
+        //rest operator create shallow copy both usr and copy point same memory change in copy will be done inside user
+
+        copy.address.city = "Karachi";
+
+        console.log(user.address.city); // Karachi
+//using this method we will be done deep copy
+        const deepCopy = JSON.parse(JSON.stringify(user));
+        deepCopy.address.city = "Islamabad";
+
+        console.log(user.address.city); // Lahore
+
+    </script>
+</body>
+
+</html>

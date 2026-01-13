@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const products = [
+            { name: "Phone", price: 500 },
+            { name: "Laptop", price: 1200 },
+            { name: "Tablet", price: 300 }
+        ];
+        let bigPrice=products.filter(product=>{
+            if(product.price>=400)
+        {
+            return product;
+        }
+        }).map(product=>{
+            return product.name;
+        });
+        //this will return names of object that has higher price
+
+         let bigPrice1=products.filter(product=>{
+            if(product.price>=400)
+        {
+            return product;
+        }
+        }).reduce((sum,product)=>{
+            return sum+product.price;
+        },0);//this will return sum of all prices of al users that has higher price than 400 
+
+
+    </script>
+</body>
+
+</html>

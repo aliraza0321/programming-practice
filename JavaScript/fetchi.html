@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1></h1>
+    <ul id="list"></ul>
+    <script>
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        //first fetch method will fetch data and data will be in string format js need object so response.json() will
+        //convert string to object and then object will receive in data and this will be print 
+
+        async function getUsers() {
+            try {
+                const response = await fetch("https://jsonplaceholder.typicode.com/users");
+
+                if (!response.ok) //if response is not ok then error otherwise convert in json
+                {
+                    throw new Error("Network error");
+                }
+
+                const data = await response.json();
+                console.log(data);
+
+            }
+            catch (error) {
+                console.log(error.message);
+            }
+        }
+        getUsers();
+
+       const list = document.querySelector("#list");
+
+        async function getUsers() {
+            const response = await fetch("https://jsonplaceholder.typicode.com/users");
+            const data = await response.json();
+
+            data.forEach(user => {
+                const li = document.createElement("li");
+                li.textContent = user.name;
+                list.appendChild(li);
+            });
+        }
+
+        getUsers();
+
+    </script>
+</body>
+
+</html>

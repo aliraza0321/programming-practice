@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+    <script>
+        async function greet() {
+            return "I am promise";
+        }
+
+        greet().then(msg => document.querySelector("h1").innerText = msg);
+        function getData() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve("Data received");
+                }, 2000);
+            });
+        }
+
+        async function showData() {
+            document.querySelector("h2").innerText = "Loading data...";
+            const result = await getData();
+            document.querySelector("h2").innerText = result;
+        }
+
+        showData();
+
+        function login(user) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (user === "admin") {
+                        resolve("Login success");
+                    } else {
+                        reject("Login failed");
+                    }
+                }, 2000);
+            });
+        }
+
+        async function handleLogin() {
+            try {
+                const msg = await login("admin");
+                document.querySelector("h3").innerText = msg;
+            } catch (error) {
+                document.querySelector("h3").innerText = error;
+            }
+        }
+
+        handleLogin();
+
+
+    </script>
+</body>
+
+</html>

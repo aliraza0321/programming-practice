@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            name: "Ali",
+            greet() {
+                console.log(this.name);//here this will be calling obj that is user
+            }
+        };
+
+        user.greet();//this will bind will user
+
+        function show() {
+            console.log(this);//here this will be window if this is alone then it will bind with window object
+        }
+
+        show();
+
+        const user1 = {
+            name: "Ali",
+            greet: () => {
+                console.log(this.name);//this will generate error value will undefined because this will bind with window arrow function did not has own this 
+            }
+        };
+
+        user1.greet();
+
+        const user3 = {
+            name: "Ali",
+            greet() {
+               let show=()=>{
+
+               
+                    console.log(this.name);
+               }
+               show();
+                
+            }
+        };
+//for use arrow function as a method always use settimeout or inside normal funciton and call inside this normal functioin
+        user3.greet();
+
+
+    </script>
+</body>
+
+</html>

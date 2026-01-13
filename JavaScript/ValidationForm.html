@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" name="name" id="name" placeholder="Enter name">
+        <input type="number" name="age" id="age" placeholder="Enter Age">
+        <button type="submit" id="btn">Submit</button>
+    </form>
+    <ul id="list"></ul>
+    <script>
+        let list = document.querySelector("#list");
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let render = () => {
+            list.innerHTML = "";
+
+            users.forEach((user, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `${user.name} ${user.age}
+                             <button data-index=${index} >X</button>`
+                list.appendChild(li);
+
+
+            });
+
+        }
+        render();
+        list.addEventListener("click", (e) => {
+            let index=e.target.dataset.index;
+            if (e.target.innerText === "X") {
+                users.splice(index,1);
+            }
+            localStorage.setItem("users", JSON.stringify(users));
+            render();
+        });
+        document.querySelector("#form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            let getName = document.querySelector("#name").value;
+            let getAge = document.querySelector("#age").value;
+            if (getName.trim() === "") {
+                alert("Please enter name correct");
+                return;
+            }
+            else if (getAge.trim() === "" || getAge <= 0) {
+
+                alert("Please enter age correct");
+                return;
+            }
+            let obj = {
+                name: getName
+                , age: getAge
+            };
+            users.push(obj);
+            localStorage.setItem("users", JSON.stringify(users));
+            render();
+
+
+            document.querySelector("#name").value = "";
+            document.querySelector("#age").value = "";
+        });
+    </script>
+</body>
+
+</html>

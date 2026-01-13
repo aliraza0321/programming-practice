@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const users = [{ name: "Ali" }];
+
+        const newUsers = [...users, { name: "Ahmed" }];
+        //output of new users will be two names if we didnot use this ... rest operator just push name then old name will be override
+        //react always use this method for changing state
+        const user = { name: "Ali", age: 20 };
+
+        const updatedUser = {
+            ...user,
+            age: 21
+        };
+
+
+    </script>
+</body>
+
+</html>

@@ -1,28 +1,45 @@
-﻿function doHomework(callback) {
-  console.log("Homework start");
-  callback();
-}
-let dosomething=()=>{
-    console.log("Doing something");
-    console.log("Something done");
-}
-doHomework(dosomething);
-function cookFood(callback) {
+﻿function fetchData(callback) {
   setTimeout(() => {
-    console.log("Food ready");
-    callback();
-  }, 3000);
+    callback("Data received");
+  }, 2000);
 }
 
-cookFood(() => {
-  console.log("Eat food");
+fetchData((data) => {
+  console.log(data);
+
 });
-// Expected output order:
-// Homework start
-// Doing something
-// Something done
-// (after 3 seconds)
-// Food ready
-// Eat food
-// This demonstrates the use of callbacks to handle asynchronous operations in JavaScript.
-// Note: Actual execution order may vary in different environments, but this is the typical behavior in browsers and Node.js.
+
+
+/*
+callback is function that is passed as a argument to other function and call inside funciton when we need 
+we can receive this function using any name  */
+function login(username, callback) {
+  if (username === "admin") {
+    callback(true);
+  } else {
+    callback(false);
+  }
+}
+
+login("admin",success);
+//we can pass whole function or obj of that function like 
+let success=()=>{
+     if (success) {
+    console.log("Login successful");
+  } else {
+    console.log("Login failed");
+  }
+
+};
+
+
+function delayedMessage(message, callback) {
+  setTimeout(() => {
+    callback(message);
+  }, 2000);
+}
+
+delayedMessage("Hello after 2 seconds", (msg) => {
+  console.log(msg);
+});
+//after 2 sec msg this message will be display

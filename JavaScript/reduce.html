@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const nums = [1, 2, 3, 4];
+
+        const sum = nums.reduce((total, num) => {
+            return total + num;
+        }, 0);//this zero is the value of total variable that is initial value of this total 
+        const cart = [
+            { price: 100 },
+            { price: 200 },
+            { price: 300 }
+        ];
+
+        const total = cart.reduce((sum, item) => {
+            return sum + item.price;//add sum in item. price and finally this will return total sum of alla prices 
+        }, 0);
+
+        //reduce method that a array and return one single value from this array that value may be sum ,product or anything which we want ;
+    </script>
+</body>
+
+</html>

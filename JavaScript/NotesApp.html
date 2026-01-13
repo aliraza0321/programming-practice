@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Welcome to notes app</h1>
+    <form id="form"">
+    <textarea name=" notes" id="input" placeholder="Enter notes "></textarea>
+    <br>
+    <button type="submit">Add</button>
+    </form>
+    <article id="article">
+
+
+    </article>
+    <script>
+        let notes = JSON.parse(localStorage.getItem("notes")) || [];
+        let article = document.getElementById("article");
+        let form=document.getElementById("form");
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            let getNote=document.getElementById("input").value;
+            if(getNote.trim()==="")
+        {
+            alert("Please enter something for add");
+            return;
+        }
+        notes.push(getNote);
+        localStorage.setItem("notes" ,JSON.stringify(notes));
+        render();
+        document.getElementById("input").value="";
+        });
+        let render=()=>{
+                article.innerHTML="";
+             notes.forEach((note,index) => {
+                let p=document.createElement("p");
+                p.innerHTML=`${note} 
+                            <button data-index=${index}>Delete</button>`
+                
+
+                article.appendChild(p);
+             });
+        }
+        render();
+        article.addEventListener("click",(e)=>{
+            if(e.target.innerText==="Delete")
+        {
+            let index=e.target.dataset.index;
+            notes.splice(index,1);
+            localStorage.setItem("notes",JSON.stringify(notes));
+            render();
+
+        }
+        })
+    </script>
+</body>
+
+</html>

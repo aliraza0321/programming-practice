@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const users = [
+            { name: "Ali", age: 21, active: true },
+            { name: "Usman", age: 19, active: false }
+            ,{name:"Raza",age:20,active:true}
+        ];
+       let Newusers=[];
+       Newusers=users.filter((user)=>{
+        if(user.active===true)
+       {
+        return user;
+       }
+       });
+       Newusers.forEach((user)=>{
+        console.log(user);
+       })
+
+    </script>
+</body>
+
+</html>

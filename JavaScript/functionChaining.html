@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //first find active users and then get their names without chaining
+        const users = [
+            { id: 10, name: "Ali", active: true },
+            { id: 11, name: "Usman", active: false },
+            { id: 12, name: "Hamza", active: true }
+        ];
+        let names = users.filter((user) => {
+            if (user.active === true) {
+                return user;
+            }
+        });
+        names = names.map((a) => {
+            return a.name;
+
+        });
+        console.log(names);
+
+        const nums = [1, 2, 3, 4, 5, 6];
+
+        let even = [];
+        even = nums.filter((a) => {
+            if (a % 2 === 0) {
+                return a;
+            }
+        });
+        console.log(even);
+
+        even = even.map((a) => {
+            return a * a;
+        });
+        console.log(even);
+
+
+        //Both examples using function chaining 
+        // Even numbers ka square nikaalo
+        // Expected: [4, 16, 36]
+
+
+        even=nums.filter((a)=>{
+            if(a%2===0)
+        {
+            return a;
+        }
+        }).map((a)=>{
+            return a*a;
+        });
+        console.log(even);
+
+        names=users.filter((user)=>{
+            if(user.active)
+        {
+            return user;
+        }
+        }).map((a)=>{
+            return a.name;
+        })
+
+      console.log(names);
+    </script>
+</body>
+
+</html>
